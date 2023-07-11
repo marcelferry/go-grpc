@@ -1,9 +1,12 @@
 FROM golang:1.18-alpine
 WORKDIR /app
-EXPOSE 80
 
-COPY hello.go ./
-ENV GO111MODULE=off
-RUN go build -o hello-app .
+EXPOSE 9000
 
-CMD [ "./hello-app" ]
+COPY . .
+
+RUN go mod download
+
+RUN go build -o hello-server-app ./server
+
+CMD [ "./hello-server-app" ]
