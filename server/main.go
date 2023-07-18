@@ -12,6 +12,7 @@ import (
 	"os"
 	"time"
 
+	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/reflection"
@@ -113,8 +114,14 @@ func main() {
 
 	interceptor := service.NewAuthInterceptor(jwtManager, accessibleRoles())
 	serverOptions := []grpc.ServerOption{
-		grpc.UnaryInterceptor(interceptor.Unary()),
-		grpc.StreamInterceptor(interceptor.Stream()),
+		grpc.ChainUnaryInterceptor(
+			interceptor.Unary(),
+			otelgrpc.UnaryServerInterceptor(),
+		),
+		grpc.ChainStreamInterceptor(
+			interceptor.Stream(),
+			otelgrpc.StreamServerInterceptor(),
+		),
 	}
 
 	if enableTLS {

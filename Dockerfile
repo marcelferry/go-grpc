@@ -1,7 +1,9 @@
 FROM golang:1.18-alpine
 WORKDIR /app
 
-EXPOSE 9000
+EXPOSE 50080
+
+ENV GRPC_PORT 50080
 
 COPY . .
 
