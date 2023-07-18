@@ -83,7 +83,15 @@ const (
 
 func main() {
 
-	port := os.Getenv("PORT")
+	httpPort := os.Getenv("PORT")
+	if httpPort == "" {
+		httpPort = "8080"
+	}
+
+	grpcPort := os.Getenv("GRPC_PORT")
+	if grpcPort == "" {
+		grpcPort = "50080"
+	}
 
 	enableTLS := false
 
@@ -97,7 +105,7 @@ func main() {
 	authServer := service.NewAuthServer(userStore, jwtManager)
 	helloServer := service.NewHelloServer()
 
-	listen, err := net.Listen("tcp", "0.0.0.0:"+port)
+	listen, err := net.Listen("tcp", "0.0.0.0:"+grpcPort)
 
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
