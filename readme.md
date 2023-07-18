@@ -22,3 +22,4 @@ https://grpc.io/docs/protoc-installation/
 
 Authorization and Authentication Reference
 https://dev.to/techschoolguru/use-grpc-interceptor-for-authorization-with-jwt-1c5h
+
