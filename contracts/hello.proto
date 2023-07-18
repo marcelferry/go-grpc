@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 option go_package = "./pb";
+option java_package = "br.com.marcelferry.tutorial";
+option java_multiple_files = true;
 
 message HelloRequest {
     string name = 1;
@@ -12,4 +14,6 @@ message HelloResponse {
 
 service HelloService {
     rpc Hello(HelloRequest) returns (HelloResponse) {};
+    rpc Admin(HelloRequest) returns (HelloResponse) {};
+    rpc Protected(HelloRequest) returns (HelloResponse) {};
 }
