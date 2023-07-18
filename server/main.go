@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net"
+	"os"
 	"time"
 
 	"google.golang.org/grpc"
@@ -82,6 +83,8 @@ const (
 
 func main() {
 
+	port := os.Getenv("PORT")
+
 	enableTLS := false
 
 	userStore := service.NewInMemoryUserStore()
@@ -94,7 +97,7 @@ func main() {
 	authServer := service.NewAuthServer(userStore, jwtManager)
 	helloServer := service.NewHelloServer()
 
-	listen, err := net.Listen("tcp", "0.0.0.0:9000")
+	listen, err := net.Listen("tcp", "0.0.0.0:"+port)
 
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
