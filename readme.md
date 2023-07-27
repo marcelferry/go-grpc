@@ -23,3 +23,9 @@ https://grpc.io/docs/protoc-installation/
 Authorization and Authentication Reference
 https://dev.to/techschoolguru/use-grpc-interceptor-for-authorization-with-jwt-1c5h
 
+https://github.com/mwitkow/grpc-proxy
+
+
+https://medium.com/helpdotcom/techtalk-a-quick-intro-to-golang-sidecars-in-kubernetes-98c4c366ad02
+
+https://sahansera.dev/building-grpc-server-go/
