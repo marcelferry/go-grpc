@@ -1,0 +1,12 @@
+  sidecar:
+    build: 
+      context: .
+      dockerfile: Dockerfile.sidecar
+    image: sidecar:latest
+    ports:
+    - ${SIDECAR_SERVER_PORT}:${SIDECAR_SERVER_PORT}
+    environment:
+      FE_PORT: ${SIDECAR_SERVER_PORT}
+      BE_PORT: ${SERVER_GRPC_PORT}
+    networks:
+    - mongodb_network

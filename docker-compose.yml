@@ -11,6 +11,8 @@ services:
     environment:
       PORT: ${SERVER_PORT}
       GRPC_PORT: ${SERVER_GRPC_PORT}
+    networks:
+    - mongodb_network
 
   mongodb:
     image : mongo

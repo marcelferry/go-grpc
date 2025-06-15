@@ -1,0 +1,14 @@
+FROM golang:1.18-alpine
+WORKDIR /app
+
+EXPOSE 8085
+
+ENV FE_PORT 8085
+
+COPY . .
+
+RUN go mod download
+
+RUN go build -o sidecar ./sidecar-http
+
+CMD [ "./sidecar" ]
